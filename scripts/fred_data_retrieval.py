@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from tqdm import tqdm
 
 # Directory to save data
-DATA_DIR = 'data'
+DATA_DIR = '/Economic-Data-Dashboard/data'
 
 # Ensure data directory exists
 os.makedirs(DATA_DIR, exist_ok=True)

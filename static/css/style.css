@@ -1,0 +1,92 @@
+/* Main page background */
+.stApp {
+    background-color: #0e1117;
+}
+
+/* Hide default Streamlit header */
+header[data-testid='stHeader'] {
+    display: none;
+}
+
+/* Hide the app text in sidebar */
+div.st-emotion-cache-79elbk.eczjsme10 {
+    display: none;
+}
+
+/* Sidebar styling */
+section[data-testid='stSidebar'] {
+    background-color: #1a1c24;
+}
+
+/* Sidebar title */
+section[data-testid='stSidebar'] div.stButton > button {
+    background-color: #00FFF0;
+    color: #0e1117;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: none;
+    margin: 4px 0;
+    height: 32px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+section[data-testid='stSidebar'] div.stButton > button:active,
+section[data-testid='stSidebar'] div.stButton > button:hover {
+    background-color:#00FFF0;
+    color: #0e1117;
+    border: none;
+}
+
+section[data-testid='stSidebar'] div.stButton > button:focus {
+    background-color:#00FFF0;
+    color: #0e1117;
+    border: none;
+    box-shadow: none;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: #00FFF0;
+}
+
+/* Markdown text */
+.element-container div.stMarkdown,
+.element-container div.stMarkdown p,
+.element-container div.stMarkdown li {
+    color: #ffffff;
+}
+
+/* Plotly hover style override */
+.js-plotly-plot .plotly .modebar {
+    background: rgba(26,28,36,0.8);
+}
+
+.js-plotly-plot .plotly .modebar-btn path {
+    fill:#00FFF0;
+}
+
+.js-plotly-plot .plotly .modebar-btn:hover path {
+    fill:#ffffff;
+}
+
+/* Logo link styling */
+.logo-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    color: #00FFF0;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.logo-link:hover {
+    color: #ffffff;
+}
+

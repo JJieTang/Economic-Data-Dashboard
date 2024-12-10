@@ -9,13 +9,22 @@ RUN apt-get update && apt-get install -y cron curl sqlite3 && \
 
 # install python dependencies
 COPY requirements.txt .
-RUN pip install -no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
 
 # copy application files (excluding data directory)
 COPY app.py .
 COPY utils.py .
 COPY scripts/ scripts/
 COPY pages/ pages/
+COPY static/ static/
+COPY start.sh start.sh
+
+#COPY . .
+
+# install python dependencies
+#COPY requirements.txt .
+#RUN pip install --no-cache-dir -r requirements.txt
 
 # make shell scripts runable
 RUN chmod +x scripts/minute_job.sh scripts/daily_job.sh
@@ -24,9 +33,9 @@ RUN chmod +x scripts/minute_job.sh scripts/daily_job.sh
 RUN echo 'SHELL=/bin/bash\n\
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\
 # Run every minute
-* * * * cd /Economic-Data-Dashboard && ./scripts/minute_job.sh >> /var/log/cron.log 2>&1\n\
+* * * * * cd /Economic-Data-Dashboard && ./scripts/minute_job.sh >> /var/log/cron.log 2>&1\n\
 # Run daily at midnight
-0 0 * * cd /Economic-Data-Dashboard && ./scripts/daily_job.sh >> /var/log/cron.log 2>&1' | crontab -
+0 0 * * * cd /Economic-Data-Dashboard && ./scripts/daily_job.sh >> /var/log/cron.log 2>&1' | crontab -
 
 # create log file and set permissions
 RUN touch /var/log/cron.log && \
@@ -35,20 +44,11 @@ RUN touch /var/log/cron.log && \
 # create data directory
 RUN mkdir -p /Economic-Data-Dashboard/data
 
+# Set up the volume
+#VOLUME ["/Economic-Data-Dashboard/data"]
+
 # create startup script with data check
-RUN echo '#!/bin/bash\n\
-service cron start\n\
-echo "$(date): Starting cron service..." >> /var/log/cron.log\n\
-\n\
-# Check if database exists and has data\n\
-if [ ! -f /Economic-Data-Dashboard/data/economics_data.db ] || [ ! -s /Economic-Data-Dashboard/data/economics_data.db]; then\n\
-    echo "$(date): No existing data found. Running initial data collection..." >> /var/log/cron.log\n\
-fi\n\
-\n\
-echo "$(date): Starting Streamlit..." >> /var/log/cron.log\n\
-exec streamlit run app.py --server.port=8501 --server.address=0.0.0.0\n\
-' > /Economic-Data-Dashboard/start.sh && \
-    chmod +x /Economic-Data-Dashboard/start.sh
+RUN chmod +x /Economic-Data-Dashboard/start.sh
 
 # Expose Streamlit port
 EXPOSE 8501

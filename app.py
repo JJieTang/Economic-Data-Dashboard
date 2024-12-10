@@ -12,7 +12,7 @@ st.set_page_config(
 st.session_state.setdefault('current_view', 'Economic Indicators')
 
 
-# Load CSS
+# Load CSS static/css/style.css
 with open('static/css/style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
