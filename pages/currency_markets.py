@@ -15,7 +15,7 @@ def show():
         '''
         dollar_index = load_data(dollar_query)
         dollar_traces = [
-            {'data':'dollar_index', 'column':'DTWEXBGS', 'name':'Dollar Index', 'line':{'color':'#FFBA08', 'width':2}}
+            {'data':dollar_index, 'column':'DTWEXBGS', 'name':'Dollar Index', 'line':{'color':'#FFBA08', 'width':2}}
         ]
         fig_dollar = create_figure(dollar_traces)
         layout = get_chart_layout('Trade Weighted U.S. Dollar Index')
@@ -36,7 +36,7 @@ def show():
         '''
         eurusd = load_data(eurusd_query)
         eurusd_traces = [
-            {'data':'eurusd', 'column':'DEXUSEU', 'name':'EUR/USD', 'line':{'color':'#FFBA08', 'width':2}}
+            {'data':eurusd, 'column':'DEXUSEU', 'name':'EUR/USD', 'line':{'color':'#FFBA08', 'width':2}}
         ]
         fig_eurusd = create_figure(eurusd_traces)
         layout = get_chart_layout('EUR/USD Exchange Rate')

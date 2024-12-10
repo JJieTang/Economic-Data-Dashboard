@@ -14,7 +14,7 @@ def show():
         '''
         fedfunds = load_data(fedfunds_query)
         fedfunds_traces = [
-            {'data':'fedfunds', 'column':'FEDFUNDS', 'name':'Federal Funds Rate', 'line':{'color':'#FFBA08', 'width':2}}
+            {'data':fedfunds, 'column':'FEDFUNDS', 'name':'Federal Funds Rate', 'line':{'color':'#FFBA08', 'width':2}}
         ]
         fig_fedfunds = create_figure(fedfunds_traces)
         layout = get_chart_layout('Federal Funds Rate')
@@ -48,9 +48,9 @@ def show():
         yields_5y = load_data(yields_5y_query)
         yields_10y = load_data(yields_10y_query)
         treasury_traces = [
-            {'data':'yields_1y', 'column':'DGS1', 'name':'1-Year', 'line':{'color':'#FFBA08', 'width':2}},
-            {'data':'yields_5y', 'column':'DGS5', 'name':'5-Year', 'line':{'color':'#00FFF0', 'width':2}},
-            {'data':'yields_10y', 'column':'DGS10', 'name':'10-Year', 'line':{'color':'#FF00FF', 'width':2}}   
+            {'data':yields_1y, 'column':'DGS1', 'name':'1-Year', 'line':{'color':'#FFBA08', 'width':2}},
+            {'data':yields_5y, 'column':'DGS5', 'name':'5-Year', 'line':{'color':'#00FFF0', 'width':2}},
+            {'data':yields_10y, 'column':'DGS10', 'name':'10-Year', 'line':{'color':'#FF00FF', 'width':2}}   
         ]
         fig_treasury = create_figure(treasury_traces)
         layout = get_chart_layout('Treasury Yields')

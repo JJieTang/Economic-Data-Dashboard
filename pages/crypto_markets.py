@@ -12,7 +12,7 @@ def show():
 
         # Price chart
         btc_traces = [
-            {'data':'btc_data', 'column':'Close', 'name':'BTC/USD', 'line':{'color':'#FFBA08', 'width':2}}
+            {'data':btc_data, 'column':'Close', 'name':'BTC/USD', 'line':{'color':'#FFBA08', 'width':2}}
         ]
         fig_btc = create_figure(btc_traces)
         layout = get_chart_layout('BTC/USD Price')
@@ -25,14 +25,14 @@ def show():
 
         # Volume chart
         fig_volume = go.Figure()
-        fig_volume.add_trace(go.Bar(x=btc_data['Datetime'], y=btc_data['Volume'], name='Volume', marker_color='#FFBA08'))
+        fig_volume.add_trace(go.Bar(x=btc_data.index, y=btc_data['Volume'], name='Volume', marker_color='#FFBA08'))
         layout = get_chart_layout('BTC/USD Trading Volume')
         fig_volume.update_layout(layout)
         st.plotly_chart(fig_volume, use_container_width=True)
 
         # Last 5 values table
         st.subheader('Latest BTC/USD Data')
-        last_5_data = btc_data.head(5)[['Datetime', 'Open', 'High', 'Low', 'Close', 'Volume']]
+        last_5_data = btc_data.head(5)[['Open', 'High', 'Low', 'Close', 'Volume']]
         last_5_data = last_5_data.round(2)
         st.dataframe(last_5_data)
     

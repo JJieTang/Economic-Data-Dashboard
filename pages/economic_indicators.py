@@ -43,7 +43,7 @@ def show():
         '''
         unemployment = load_data(unemployment_query)
         unemployment_traces = [
-            {'data':'unemployment', 'column':'UNRATE', 'name':'Unemployment Rate', 'line':{'color':'#FFBA08', 'width':2}}
+            {'data':unemployment, 'column':'UNRATE', 'name':'Unemployment Rate', 'line':{'color':'#FFBA08', 'width':2}}
         ]
         fig_unemployment = create_figure(unemployment_traces)
         layout = get_chart_layout('U.S. Unemployment Rate')
@@ -71,8 +71,8 @@ def show():
         cpi_core = load_data(cpi_core_query)
         cpi_all = load_data(cpi_all_query)
         cpi_traces = [
-            {'data':'cpi_core', 'column':'cpi_core_yoy', 'name':'Core CPI', 'line':{'color':'#FFBA08', 'width':2}},
-            {'data':'cpi_all', 'column':'cpi_all_yoy', 'name':'All Items CPI', 'line':{'color':'#00FFF0', 'width':2}}
+            {'data':cpi_core, 'column':'cpi_core_yoy', 'name':'Core CPI', 'line':{'color':'#FFBA08', 'width':2}},
+            {'data':cpi_all, 'column':'cpi_all_yoy', 'name':'All Items CPI', 'line':{'color':'#00FFF0', 'width':2}}
         ]
         fig_cpi = create_figure(cpi_traces)
         layout = get_chart_layout('US Inflation/Consumer Price Index (Year-over-Year Change)')
@@ -100,9 +100,9 @@ def show():
         ireland_cpi = load_data(ireland_cpi_query)
         euro_cpi = load_data(euro_cpi_query)
         euro_cpi_traces = [
-            {'data':'ireland_cpi', 'column':'cpi_ireland_yoy', 'name':'Ireland CPI', 'line':{'color':'#00FF00', 'width':2}},
-            {'data':'euro_cpi', 'column':'cpi_euro_yoy', 'name':'Euro Area CPI', 'line':{'color':'#003399', 'width':2}},
-            {'data':'cpi_all', 'column':'api_all_yoy', 'name':'US CPI (All Items)', 'line':{'color':'#00FFF0', 'width':2}}
+            {'data':ireland_cpi, 'column':'cpi_ireland_yoy', 'name':'Ireland CPI', 'line':{'color':'#00FF00', 'width':2}},
+            {'data':euro_cpi, 'column':'cpi_euro_yoy', 'name':'Euro Area CPI', 'line':{'color':'#003399', 'width':2}},
+            {'data':cpi_all, 'column':'api_all_yoy', 'name':'US CPI (All Items)', 'line':{'color':'#00FFF0', 'width':2}}
         ]
         fig_euro_cpi = create_figure(euro_cpi_traces)
         layout = get_chart_layout('Ireland vs Euro Area vs. US CPI (Year-over-Year Change)')

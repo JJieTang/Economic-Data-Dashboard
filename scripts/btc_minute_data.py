@@ -61,7 +61,7 @@ def setup_database():
 
 
 
-def get_btc_minute_date():
+def get_btc_minute_data():
     '''Get minute-level data'''
     try:
         # get the latest timestamp
@@ -97,8 +97,9 @@ def get_btc_minute_date():
         try:
             new_df.to_sql('btc_minute', engine, if_exists='append', index=True, index_label='Datetime')
 
-            with engine.begin() as conn:
-                total_record = conn.execute(text('SELECT COUNT(*) FROM btc_minute')).scalar()
+
+            #with engine.begin() as conn:
+                #total_record = conn.execute(text('SELECT COUNT(*) FROM btc_minute')).scalar()
 
         except Exception as e:
             if 'UNIQUE constraint failed' in str(e):
@@ -106,7 +107,7 @@ def get_btc_minute_date():
             else:
                 print(f'Error saving to database: {e}')
 
-        return df
+        return new_df
     
     except Exception as e:
         print(f'Error fetching data: {e}')
@@ -119,7 +120,7 @@ def continuous_fetch(interval_seconds=60):
     try:
         while True:
             try:
-                get_btc_minute_date()
+                get_btc_minute_data()
             except Exception as e:
                 print(f'Error fetching data: {e}')
             time.sleep(interval_seconds)
@@ -162,7 +163,7 @@ def main():
     if args.mode == 'continuous':
         continuous_fetch(args.interval)
     else:
-        get_btc_minute_date()
+        get_btc_minute_data()
 
 
 if __name__=='__main__':

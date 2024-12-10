@@ -54,7 +54,8 @@ def load_btc_data():
             df = pd.read_sql_query(query, conn)
             #conn.close()
             df['Datetime'] = pd.to_datetime(df['Datetime'])
-            return df
+            df.set_index('Datetime', inplace=True)
+        return df
     except Exception as e:
         st.error(f'Error loading BTC data: {e}')
         raise e
@@ -81,20 +82,6 @@ def create_figure(traces):
     try: 
         fig = go.Figure()
         for trace in traces:
-
-            # Validate that trace is a dictionary
-            if not isinstance(trace, dict):
-                raise ValueError(f"Trace is not a dictionary: {trace}")
-
-            # Validate the required keys in the trace dictionary
-            required_keys = ['data', 'column', 'name', 'line']
-            for key in required_keys:
-                if key not in trace:
-                    raise KeyError(f"Missing key '{key}' in trace: {trace}")
-
-            # Validate that trace['data'] is a DataFrame-like object
-            if not hasattr(trace['data'], 'index') or not hasattr(trace['data'], '__getitem__'):
-                raise ValueError(f"trace['data'] is not a DataFrame-like object: {trace['data']}")
             
             fig.add_trace(go.Scatter(
                 x=trace['data'].index,

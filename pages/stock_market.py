@@ -14,10 +14,10 @@ def show():
         '''
         sp500 = load_data(sp500_query)
         sp500_traces = [
-            {'data':'sp500', 'column':'SP500', 'name':'S&P 500', 'line':{'color':'#FFBA08', 'width':2}},
-            {'data':'sp500', 'column':'sp500_ma20', 'name':'20-day MA', 'line':{'color':'#00FFF0', 'width':1, 'dash':'dash'}},
-            {'data':'sp500', 'column':'sp500_ma50', 'name':'50-day MA', 'line':{'color':'#FF00FF', 'width':1, 'dash':'dash'}},
-            {'data':'sp500', 'column':'sp500_ma200', 'name':'200-day MA', 'line':{'color':'#00FF00', 'width':1, 'dash':'dash'}}          
+            {'data':sp500, 'column':'SP500', 'name':'S&P 500', 'line':{'color':'#FFBA08', 'width':2}},
+            {'data':sp500, 'column':'sp500_ma20', 'name':'20-day MA', 'line':{'color':'#00FFF0', 'width':1, 'dash':'dash'}},
+            {'data':sp500, 'column':'sp500_ma50', 'name':'50-day MA', 'line':{'color':'#FF00FF', 'width':1, 'dash':'dash'}},
+            {'data':sp500, 'column':'sp500_ma200', 'name':'200-day MA', 'line':{'color':'#00FF00', 'width':1, 'dash':'dash'}}          
         ]
         fig_sp500 = create_figure(sp500_traces)
         layout = get_chart_layout('S&P 500 Index with Moving Averages')
@@ -38,9 +38,9 @@ def show():
         '''
         vix = load_data(vix_query)
         vix_traces = [
-            {'date':'vix', 'column':'VIXCLS', 'name':'VIX', 'line':{'color':'#FFBA08', 'width':2}},
-            {'date':'vix', 'column':'vix_ma20', 'name':'20-day MA', 'line':{'color':'#00FFF0', 'width':1, 'dash':'dash'}},
-            {'date':'vix', 'column':'vix_ma50', 'name':'50-day MA', 'line':{'color':'#FF00FF', 'width':1, 'dash':'dash'}}
+            {'date':vix, 'column':'VIXCLS', 'name':'VIX', 'line':{'color':'#FFBA08', 'width':2}},
+            {'date':vix, 'column':'vix_ma20', 'name':'20-day MA', 'line':{'color':'#00FFF0', 'width':1, 'dash':'dash'}},
+            {'date':vix, 'column':'vix_ma50', 'name':'50-day MA', 'line':{'color':'#FF00FF', 'width':1, 'dash':'dash'}}
         ]
         fig_vix = create_figure(vix_traces)
         layout = get_chart_layout('VIX Volatility Index')
